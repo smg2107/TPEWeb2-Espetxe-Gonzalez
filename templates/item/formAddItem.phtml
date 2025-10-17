@@ -1,0 +1,28 @@
+<form action="addItem" method="POST">
+
+    <div class="row">
+
+        <label>De que categoria es</label>
+        <select required name="id_category" class="form-control">
+            <option selected disabled>Seleccione la categoria</option>
+            <?php foreach ($categories as $category) : ?>
+                <option value="<?= $category->id_category ?>"><?= $category->nombre ?></option>
+            <?php endforeach ?>
+        </select>
+
+        <label>Nombre</label>
+        <input required name="nombre" type="text" placeholder="Ingrese el nombre" class="form-control">
+
+        <label>Material</label>
+        <input required name="material" placeholder="Ingrese material" class="form-control"></input>
+    
+        <label>Precio</label>
+        <input  required name="precio" type="text" placeholder="precio" class="form-control" ><?= $item->precio?></input>
+       
+        <label>Dispomnible</label>
+        <input  required name="disponible" type="tinyint" placeholder="dispomible" class="form-control" ><?= $item->disponible?></input>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Agregar</button>
+</form>

@@ -1,0 +1,46 @@
+<?php require './templates/layout/header.phtml' ?>
+
+<h4>Prendas</h4>
+
+<?php if ($this->session) : require $form; endif ?>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Prenda</th>
+            <th>Categoria</th>
+            <th>Nombre</th>
+            <th>Material</th>
+            <th>Precio</th>
+            <th>Disponible</th>
+            <?php if ($this->session) : ?>
+                <th>Acciones</th>
+            <?php endif; ?>
+        </tr>
+    </thead>
+
+    <tbody>
+        <?php foreach ($items as $item) : ?>
+            <tr>
+                <td><a href="items/<?= $item->id_item ?>"><?= htmlspecialchars($item->id_item) ?></a></td>
+                <td><a href="categories/<?= $item->id_category ?>"><?= htmlspecialchars($item->id_category) ?></a></td>
+                <td><?= $item->nombre ?></td>
+                <td><?= $item->material?></td>
+                <td><?= $item->precio?></td>
+                <td><?= $item->disponible?></td>
+
+                <?php if ($this->session) : ?>
+                    <td>
+                        <a href="editItemForm/<?= $item->id_item ?> " class="btn btn-primary">Editar</a>
+                        <a href="removeItem/<?= $item->id_item ?>" class="btn btn-danger"
+                            onclick="return confirm('¿Estás seguro de que queres borrar esta prenda?');">Borrar</a>
+                    </td>
+                <?php endif ?>
+            </tr>
+
+        <?php endforeach ?>
+    </tbody>
+
+</table>
+
+<?php require './templates/layout/footer.phtml' ?>

@@ -1,0 +1,30 @@
+<?php require './templates/layout/header.phtml' ?>
+
+<h4>Sobre la Categoria</h4>
+<ul class="list-group">
+    <li class="list-group-item item-task">
+        <div>
+            <h5><?= $category->nombre ?></h5>
+            <p>Descripcion: <?= $category->descripcion ?></p>
+            <p>Responsable: <?= $category->responsable ?></p>
+        </div>
+    </li>
+</ul>
+
+<!-- Listado de prendas de la categoria, Refactor a otra parte del codigo? -->
+<h5>Items:</h5>
+<ul class="list-group">
+    <?php if (!empty($items)): ?>
+        <?php foreach ($items as $item): ?>
+            <li class="list-group-item">
+                <div>
+                    <p><strong>Prenda: <?= $item->nombre ?></strong></p>
+                    <p><?= $item->disponible ?></p>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    <?php else: ?>No hay prendas para esta categoria.</li>
+    <?php endif; ?>
+</ul>
+
+<?php require './templates/layout/footer.phtml' ?>

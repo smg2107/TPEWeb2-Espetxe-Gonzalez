@@ -1,0 +1,16 @@
+<form action="editCategory/<?= $category->id_category ?>" method="POST">
+
+    <div class="row">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre" value="<?= $category->nombre ?>" required>
+
+        <label for="descripcion">Descripcion</label>
+        <input type="text" id="descripcion" name="descripcion" placeholder="Descripcion" value="<?= $category->descripcion ?>" required>
+
+        <label for="responsable">Rresponsable</label>
+        <input type="text" id="responsable" name="responsable" placeholder="responsable" value="<?= $category->responsable ?>" required>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Editar</button>
+</form>

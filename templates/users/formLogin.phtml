@@ -1,0 +1,27 @@
+<?php require './templates/layout/header.phtml' ?>
+
+<?php if (AuthHelper::check()) : ?><h4>La sesión ya fué iniciada <a href="reviews">(volver)</a></h4>
+<?php else : ?>
+    <div>
+        <form method="POST" action="auth">
+            <div>
+                <label for="username">Usuario</label>
+                <input type="text" required class="form-control" id="username" name="username">
+            </div>
+            <div>
+                <label for="password">Contraseña</label>
+                <input type="password" required class="form-control" id="password" name="password">
+            </div>
+
+            <?php if ($error) : ?>
+                <div class='alert alert-danger' role='alert'>
+                    <?= $error ?>
+                </div>
+            <?php endif ?>
+
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+<?php endif ?>
+
+<?php require './templates/layout/footer.phtml' ?>
