@@ -4,22 +4,22 @@
 
         <label>Prenda a Editar</label>
         <label>De que categoria es</label>
-        <select required name="id_category" class="form-control" value="<?= $item->id ?>">
+        <select required name="id_categoria" class="form-control" value="<?= $category->id ?>">
             <option selected disabled>Seleccione la categoria</option>
-            <?php foreach ($mcategories as $category) : ?>
+            <?php foreach ($categories as $category) : ?>
                 <option value="<?= $category->id ?>"><?= $category->nombre ?></option>
             <?php endforeach ?>
         </select>
 
         <label>Nombre</label>
-        <input required name="nombre" type="text" placeholder="Ingrese el nombre de la prenda" class="form-control" value="<?= $item->nombre ?>">
+        <input required name="nombre" type="text" placeholder="Ingrese el nombre de la prenda" class="form-control" value="<?= $item->nombre ?>"></input>
 
         <label>Material de la prenda</label>
         <input  required name="material" type="text" placeholder="tipo de material" class="form-control" ><?= $item->material?></input>
         <label>Precio</label>
-        <input  required name="precio" type="text" placeholder="precio" class="form-control" ><?= $item->precio?></input>
-        <label>Dispomnible</label>
-        <input  required name="disponible" type="boolean" placeholder="dispomible" class="form-control" ><?= $item->disponible?></input>
+        <input  required name="precio" type="number" placeholder="precio" class="form-control" ><?= $item->precio?></input>
+        <label>Disponible</label>
+        <input  required name="disponible" type="boolean" placeholder="disponible" class="form-control" ><?= $item->disponible?></input>
     </div>
 
     <button type="submit" class="btn btn-primary mt-2">Editar</button>

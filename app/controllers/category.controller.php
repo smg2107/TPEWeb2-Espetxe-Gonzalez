@@ -19,14 +19,14 @@
 
     public function showCategories()
     {
-        AuthHelper::verify();
+        //AuthHelper::verify();
         $categories = $this->categoryModel->getCategories();
         $this->categoryView->showCategories($categories);
     }
 
     public function showCategory($id)
     {
-        AuthHelper::verify();
+        //AuthHelper::verify();
         $category = $this->categoryModel->getCategory($id);
         $items = $this->itemModel->getCategoryItems($id);
         $this->categoryView->showCategory($category, $items);
@@ -87,6 +87,7 @@
         if (!$category) {
             $this->categoryView->error("La categoria que se quiere eliminar no existe");
         } else {
+            // verificar si estan vacios los items de la categoria
             $this->categoryModel->deleteCategory($id);
             header('Location: ' . BASE_URL . 'categories');
         }

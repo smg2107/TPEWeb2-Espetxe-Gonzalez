@@ -12,7 +12,7 @@ class CategoryView extends View{
     }
     public function editCategoryForm($category, $categories){
         $form = './templates/categories/formUpdateCategory.phtml';
-        require './templates/categories/showCategories.phtml';
+        require './templates/categories/showCategories.phtml'; //que estamos requiriendo aca
     }
     public function error($errorString){
         require './templates/layout/error.phtml';
