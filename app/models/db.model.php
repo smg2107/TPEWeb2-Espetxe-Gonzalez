@@ -25,7 +25,7 @@ class Model {
         if (count($tables) == 0) {
             $sql = <<<END
 
-				-- phpMyAdmin SQL Dump
+                -- phpMyAdmin SQL Dump
                 -- version 5.2.1
                 -- https://www.phpmyadmin.net/
                 --
@@ -92,7 +92,22 @@ class Model {
                 (1, 1, 'pollera punk', 'jean reciclado', 30000, 1),
                 (2, 2, 'lettering', 'jean desteñido', 40000, 1);
 
+                -- --------------------------------------------------------
+
                 --
+                -- Estructura de tabla para la tabla `users`
+                --
+                --
+                CREATE TABLE `users` (
+                `id_user` int(11) NOT NULL AUTO_INCREMENT,
+                `username` varchar(100) NOT NULL,
+                `password` varchar(255) NOT NULL,
+                PRIMARY KEY (`id_user`)
+                );
+
+                INSERT INTO `users` (`username`, `password`) VALUES ('webadmin', '1234');
+
+                -- --------------------------------------------------------
                 -- Índices para tablas volcadas
                 --
 
@@ -141,9 +156,9 @@ class Model {
                 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
-				END;
+                END;
 
-            $this->db->query($sql); 
+            $this->db->query($sql);
         }
     }
 }

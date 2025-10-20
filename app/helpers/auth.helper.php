@@ -10,8 +10,8 @@ class AuthHelper {
 
     public static function login($user) {       //inicia la session con el usuario enviado por parámetro
         AuthHelper::init();
-        $_SESSION['USER_ID'] = $user->id_user;
-        $_SESSION['USER_NAME'] = $user->username; 
+        $_SESSION['USER_ID'] = $user->id;
+        $_SESSION['USER_NAME'] = $user->username;
     }
 
     public static function logout() {           //destruye la session iniciada

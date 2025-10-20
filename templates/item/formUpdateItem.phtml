@@ -1,13 +1,13 @@
-<form action="editItem/<?= $item->id_item ?>" method="POST">
+<form action="editItem/<?= $item->id ?>" method="POST">
 
     <div class="row">
 
         <label>Prenda a Editar</label>
         <label>De que categoria es</label>
-        <select required name="id_category" class="form-control" value="<?= $item->id_category ?>">
+        <select required name="id_category" class="form-control" value="<?= $item->id ?>">
             <option selected disabled>Seleccione la categoria</option>
             <?php foreach ($mcategories as $category) : ?>
-                <option value="<?= $category->id_category ?>"><?= $category->nombre ?></option>
+                <option value="<?= $category->id ?>"><?= $category->nombre ?></option>
             <?php endforeach ?>
         </select>
 
@@ -16,9 +16,9 @@
 
         <label>Material de la prenda</label>
         <input  required name="material" type="text" placeholder="tipo de material" class="form-control" ><?= $item->material?></input>
-         <label>Precio</label>
+        <label>Precio</label>
         <input  required name="precio" type="text" placeholder="precio" class="form-control" ><?= $item->precio?></input>
-         <label>Dispomnible</label>
+        <label>Dispomnible</label>
         <input  required name="disponible" type="boolean" placeholder="dispomible" class="form-control" ><?= $item->disponible?></input>
     </div>
 

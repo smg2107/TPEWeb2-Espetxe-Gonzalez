@@ -22,8 +22,8 @@
     <tbody>
         <?php foreach ($items as $item) : ?>
             <tr>
-                <td><a href="items/<?= $item->id_item ?>"><?= htmlspecialchars($item->id_item) ?></a></td>
-                <td><a href="categories/<?= $item->id_category ?>"><?= htmlspecialchars($item->id_category) ?></a></td>
+                <td><a href="prenda/<?= $item->id ?>"><?= htmlspecialchars($item->id) ?></a></td>
+                <td><a href="categoria/<?= $item->id ?>"><?= htmlspecialchars($item->id) ?></a></td>
                 <td><?= $item->nombre ?></td>
                 <td><?= $item->material?></td>
                 <td><?= $item->precio?></td>
@@ -31,8 +31,8 @@
 
                 <?php if ($this->session) : ?>
                     <td>
-                        <a href="editItemForm/<?= $item->id_item ?> " class="btn btn-primary">Editar</a>
-                        <a href="removeItem/<?= $item->id_item ?>" class="btn btn-danger"
+                        <a href="editItemForm/<?= $item->id ?> " class="btn btn-primary">Editar</a>
+                        <a href="removeItem/<?= $item->id ?>" class="btn btn-danger"
                             onclick="return confirm('¿Estás seguro de que queres borrar esta prenda?');">Borrar</a>
                     </td>
                 <?php endif ?>

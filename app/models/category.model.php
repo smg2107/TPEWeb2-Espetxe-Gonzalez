@@ -1,10 +1,10 @@
 <?php
-require_once './app/models/model.php';
+require_once './app/models/item.model.php';
 
 class CategoryModel extends Model {
 
     public function getCategories() {
-        $query = $this->db->prepare('SELECT * FROM categories ORDER BY nombre');
+        $query = $this->db->prepare('SELECT * FROM categoria ORDER BY nombre');
         $query->execute();
         
         $categories = $query->fetchAll(PDO::FETCH_OBJ);
@@ -12,7 +12,7 @@ class CategoryModel extends Model {
     }
 
     public function getCategory($id) {
-        $query = $this->db->prepare('SELECT * FROM categories WHERE id_category=?');
+        $query = $this->db->prepare('SELECT * FROM categoria WHERE id=?');
         $query->execute([$id]);
         
         $category = $query->fetch(PDO::FETCH_OBJ);
@@ -20,15 +20,15 @@ class CategoryModel extends Model {
     }
 
     public function addCategory($nombre, $descripcion, $responsable){
-        $query = $this->db->prepare('INSERT INTO categories (nombre, descripcion, responsable) VALUES (?, ?, ?)');
+        $query = $this->db->prepare('INSERT INTO categoria (nombre, descripcion, responsable) VALUES (?, ?, ?)');
         $query->execute([$nombre, $descripcion, $responsable]);
     }
     public function editCategory($nombre, $descripcion, $responsable,$id){
-        $query = $this->db->prepare('UPDATE categories SET nombre=?, descripcion=?, responsable=? WHERE id_category=?');
+        $query = $this->db->prepare('UPDATE categoria SET nombre=?, descripcion=?, responsable=? WHERE id=?');
         $query->execute([$nombre, $descripcion, $responsable, $id]);
     }
     public function deleteCategory($id){
-        $query = $this->db->prepare('DELETE FROM categories WHERE id_category=?');
+        $query = $this->db->prepare('DELETE FROM categoria WHERE id=?');
         $query->execute([$id]);
     }
 }

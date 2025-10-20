@@ -24,6 +24,8 @@ class AuthController
     {
         $username = $_POST['username'];          //se reciben user y pass enviados por POST del form
         $password = $_POST['password'];
+        //$hash = password_hash($password, PASSWORD_DEFAULT);
+        
 
         if (empty($username) || empty($password)) {
             $this->view->showLogin('Faltan completar datos');
@@ -39,15 +41,17 @@ class AuthController
 
         if ($user && password_verify($password, $user->password)) { //checkeamos que el user este en la db
             AuthHelper::login($user);
-            header('Location: ' . BASE_URL . 'reviews');
+            header('Location: ' . BASE_URL . ' ');
         } else {
             $this->view->showLogin('Usuario y/o contraseña inválidos');
+            
+
         }
     }
 
     public function logout()
     {
         AuthHelper::logout();
-        header('Location: ' . BASE_URL . 'reviews');
+        header('Location: ' . BASE_URL . ' ');
     }
 }

@@ -1,4 +1,4 @@
-<?php require './app/templates/header.phtml' ?>
+<?php require './templates/layout/header.phtml' ?>
 
 <h4>CATEGORIAS</h4>
 
@@ -20,14 +20,14 @@
     <tbody>
         <?php foreach ($categories as $category) : ?>
             <tr>
-                <td><a href="categories/<?= $category->id_category ?>"><?= $category->nombre ?></a></td>
+                <td><a href="categories/<?= $category->id ?>"><?= $category->nombre ?></a></td>
                 <td><?= $category->descripcion ?></td>
                 <td><?= $category->responsable ?></td>
 
                 <?php if ($this->session) : ?>
                     <td>
-                        <a href="editCategoryForm/<?= $category->id_category ?>" class="btn btn-primary">Editar</a>
-                        <a href="removeCategory/<?= $category->id_mcategory ?>" class="btn btn-danger"
+                        <a href="editCategoryForm/<?= $category->id ?>" class="btn btn-primary">Editar</a>
+                        <a href="removeCategory/<?= $category->id ?>" class="btn btn-danger"
                             onclick="return confirm('¿Estás seguro de que queres borrar esta categoria?');">Borrar</a>
                     </td>
                 <?php endif ?>
@@ -38,4 +38,4 @@
 
 </table>
 
-<?php require './app/templates/footer.phtml' ?>
+<?php require './templates/layout/footer.phtml' ?>

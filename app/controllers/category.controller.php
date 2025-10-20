@@ -65,16 +65,16 @@
     {
         AuthHelper::verify();
         if (
-           isset($_POST['nombre']) && ($_POST['nombre'] != null)
+            isset($_POST['nombre']) && ($_POST['nombre'] != null)
             && isset($_POST['descripcion']) && ($_POST['descripcion'] != null)
             && isset($_POST['responsable']) && ($_POST['responsable'] != null)
         ) {
 
-           $nombre = $_POST['nombre'];
+            $nombre = $_POST['nombre'];
             $descripcion = $_POST['descripcion'];
             $responsable = $_POST['responsable'];
 
-            $this->movieModel->editCategory($nombre, $descripcion, $responsable, $id);
+            $this->categoryModel->editCategory($nombre, $descripcion, $responsable, $id);
             header('Location: ' . BASE_URL . 'categories');
         } else {
             $this->categoryView->error("Complete todos los campos para actualizar");
@@ -87,7 +87,7 @@
         if (!$category) {
             $this->categoryView->error("La categoria que se quiere eliminar no existe");
         } else {
-            $this-$categoryModel->deleteCategory($id);
+            $this->categoryModel->deleteCategory($id);
             header('Location: ' . BASE_URL . 'categories');
         }
     }

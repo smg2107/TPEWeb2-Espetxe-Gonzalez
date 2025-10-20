@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 20-09-2025 a las 00:53:31
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Oct 18, 2025 at 06:06 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,95 +18,49 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `db_tienda_panpox`
+-- Database: `db_tienda_panpox`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categoria`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `categoria` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(250) NOT NULL,
-  `descripcion` varchar(250) NOT NULL,
-  `responsable` varchar(250) NOT NULL
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(20) DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `categoria`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `responsable`) VALUES
-(1, 'pollera', '...', 'Valentina Espetxe'),
-(2, 'pantalón', '...', 'Sofia Verea');
-
--- --------------------------------------------------------
+INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
+(1, 'webadmin', '$2y$10$PObv7gZboxI18VWhX7Cbueht4wL/mAejbLK8CImh2uHmuEEpdhEt2', 'admin');
 
 --
--- Estructura de tabla para la tabla `prenda`
---
-
-CREATE TABLE `prenda` (
-  `id` int(11) NOT NULL,
-  `id_categoria` int(11) NOT NULL,
-  `nombre` varchar(250) NOT NULL,
-  `material` varchar(250) NOT NULL,
-  `precio` double NOT NULL,
-  `disponible` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `prenda`
---
-
-INSERT INTO `prenda` (`id`, `id_categoria`, `nombre`, `material`, `precio`, `disponible`) VALUES
-(1, 1, 'pollera punk', 'jean reciclado', 30000, 1),
-(2, 2, 'lettering', 'jean desteñido', 40000, 1);
-
---
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `categoria`
+-- Indexes for table `users`
 --
-ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `prenda`
---
-ALTER TABLE `prenda`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_categoria_pk` (`id_categoria`);
+  ADD UNIQUE KEY `username` (`username`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `prenda`
---
-ALTER TABLE `prenda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Restricciones para tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Filtros para la tabla `prenda`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `prenda`
-  ADD CONSTRAINT `prenda_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`);
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,7 +3,7 @@
 require_once './app/models/item.model.php';
 require_once './app/views/item.view.php';
 
-class reviewController
+class ItemController
 {
     private $itemModel;
     private $categoryModel;
@@ -35,20 +35,20 @@ class reviewController
         AuthHelper::verify();
 
         if (
-            isset($_POST['id_category']) && ($_POST['id_category'] != null)
+            isset($_POST['id']) && ($_POST['id'] != null)
             && isset($_POST['nombre']) && ($_POST['nombre'] != null)
             && isset($_POST['material']) && ($_POST['material'] != null)
             && isset($_POST['precio']) && ($_POST['precio'] != null)
             && isset($_POST['disponible']) && ($_POST['disponible'] != null)
         ) {
-            $id_category = $_POST['id_category'];
+            $id = $_POST['id'];
             $nombre = $_POST['nombre'];
             $material = $_POST['material'];
             $precio = $_POST['precio'];
             $disponible = $_POST['disponible'];
 
-            $this->itemModel->addItem($id_category, $nombre, $material, $precio, $disponible);
-            header('Location: ' . BASE_URL . 'items');
+            $this->itemModel->addItem($id, $nombre, $material, $precio, $disponible);
+            header('Location: ' . BASE_URL . 'prenda');
         } else {
             $this->itemView->error("Complete todos los campos para actualizar");
         }
@@ -68,20 +68,20 @@ class reviewController
         AuthHelper::verify();
 
         if (
-            isset($_POST['id_category']) && ($_POST['id_category'] != null)
+            isset($_POST['id']) && ($_POST['id'] != null)
             && isset($_POST['nombre']) && ($_POST['nombre'] != null)
             && isset($_POST['material']) && ($_POST['material'] != null)
             && isset($_POST['precio']) && ($_POST['precio'] != null)
             && isset($_POST['disponible']) && ($_POST['disponible'] != null)
         ) {
-            $id_category = $_POST['id_category'];
+            $id_category = $_POST['id'];
             $nombre = $_POST['nombre'];
             $material = $_POST['material'];
             $precio = $_POST['precio'];
             $disponible = $_POST['disponible'];
 
             $this->itemModel->editItem($id_category, $nombre, $material, $precio, $disponible, $id);
-            header('Location: ' . BASE_URL . 'items');
+            header('Location: ' . BASE_URL . 'prenda');
         } else {
             $this->itemView->error("Complete todos los campos para actualizar");
         }
@@ -94,7 +94,7 @@ class reviewController
             $this->itemView->error("La prenda que se quiere eliminar no existe");
         }else{
             $this->itemModel->deleteItem($id);
-        header('Location: ' . BASE_URL . 'items');
+        header('Location: ' . BASE_URL . 'prenda');
         }
         
     }

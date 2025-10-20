@@ -1,16 +1,14 @@
 <?php
-require_once './app/models/model.php';
+require_once './app/models/db.model.php';
 
 class ItemModel extends Model{
 
 
     public function getItems() {
         $query = $this->db->prepare('
-            SELECT items.*, category.nombre 
-            FROM items 
-            JOIN categories ON items.id_category = categories.id_category
-            ORDER BY items.id_category
-        ');
+            SELECT *
+            FROM prenda
+            ');
         $query->execute();
         
         $items = $query->fetchAll(PDO::FETCH_OBJ);
@@ -18,7 +16,7 @@ class ItemModel extends Model{
     }
 
     public function getCategoryItems($categoryId){
-        $query = $this->db->prepare('SELECT * FROM items WHERE id_category=? ORDER BY id_category');
+        $query = $this->db->prepare('SELECT * FROM prenda WHERE id=? ORDER BY id');
         $query->execute([$categoryId]);
         
         $items = $query->fetchAll(PDO::FETCH_OBJ);
@@ -27,32 +25,34 @@ class ItemModel extends Model{
 
     
     public function getItem($id) {
-        $query = $this->db->prepare('SELECT * FROM items WHERE id_item=?');
+        $query = $this->db->prepare('SELECT * FROM prenda WHERE id=?');
         $query->execute([$id]);
         
+        $item = $query->fetch(PDO::FETCH_OBJ);
+
         $review = $query->fetch(PDO::FETCH_OBJ);
         if ($item) {
-            $categoryQuery = $this->db->prepare("SELECT title FROM categories WHERE id_category = ?");
-            $categoryQuery->execute([$item->id_category]);
-            $movie = $categoryQuery->fetch(PDO::FETCH_OBJ);
+            $categoryQuery = $this->db->prepare("SELECT * FROM prenda WHERE id = ?");
+            $categoryQuery->execute([$item->id]);
+            $category  = $categoryQuery->fetch(PDO::FETCH_OBJ);
             $item->title = $category ? $category->title : null;
         }
 
         return $review;
     }
 
-    public function addItem($id_category, $nombre, $material, $precio, $disponible){
-        $query = $this->db->prepare('INSERT INTO items (id_category, nombre, material, precio, disponible) VALUES (?,?,?,?,?)');
-        $query->execute([$id_category, $nombre, $material, $precio, $disponible]);
+    public function addItem($id, $nombre, $material, $precio, $disponible){
+        $query = $this->db->prepare('INSERT INTO prenda (id, nombre, material, precio, disponible) VALUES (?,?,?,?,?)');
+        $query->execute([$id, $nombre, $material, $precio, $disponible]);
     }
 
-    public function editItem($id_category,$nombre, $material, $precio, $disponible, $id){
-        $query = $this->db->prepare('UPDATE items SET id_category=?, nombre=?, material=?, precio=?, disponible=? WHERE id_item=?');
-        $query->execute([$id_category, $nombre, $material, $precio, $disponible, $id]);
+    public function editItem($id,$nombre, $material, $precio, $disponible){
+        $query = $this->db->prepare('UPDATE prenda SET id=?, nombre=?, material=?, precio=?, disponible=? WHERE id=?');
+        $query->execute([$id, $nombre, $material, $precio, $disponible, $id]);
     }
 
     public function deleteItem($id){
-        $query = $this->db->prepare('DELETE FROM items WHERE id_item=?');
+        $query = $this->db->prepare('DELETE FROM prenda WHERE id=?');
         $query->execute([$id]);
     }
 
