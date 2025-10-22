@@ -34,6 +34,7 @@ class ItemModel extends Model{
 
     
     public function getItem($id) {
+<<<<<<< HEAD
     $query = $this->db->prepare('
         SELECT
         
@@ -54,6 +55,27 @@ class ItemModel extends Model{
     return $item;
 }
 
+=======
+        $query = $this->db->prepare('
+            SELECT 
+                a.nombre AS prendaNombre,
+                a.material AS prendaMaterial,
+                a.precio AS prendaPrecio,
+                a.disponible AS prendaDisponible,
+                a.descripcion AS prendaDescripcion,
+                b.nombre AS categoriaNombre
+            FROM prenda a
+            INNER JOIN categoria b
+                ON a.id_categoria = b.id
+            WHERE a.id = ?
+        ');
+        
+        $query->execute([$id]);
+        $item = $query->fetch(PDO::FETCH_OBJ);
+
+        return $item;
+    }
+>>>>>>> 3107f78efa7093d8b422f680fcbf42e1a41588c1
 
     public function addItem($id_category, $nombre, $material, $precio, $disponible){
         $query = $this->db->prepare('INSERT INTO prenda (id_categoria, nombre, material, precio, disponible) VALUES (?,?,?,?,?)');
