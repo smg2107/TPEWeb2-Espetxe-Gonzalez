@@ -7,6 +7,7 @@ class ItemView extends View{
         $form= './templates/item/formAddItem.phtml';
         require './templates/item/showItems.phtml';
     }
+
     public function showItem($item){
         require './templates/item/showItemDetail.phtml';
     }

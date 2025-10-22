@@ -6,13 +6,22 @@ class ItemModel extends Model{
 
     public function getItems() {
         $query = $this->db->prepare('
-            SELECT *
-            FROM prenda
-            ');
+        SELECT 
+            a.id,
+            a.nombre AS prendaNombre, 
+            a.material AS prendaMaterial,
+            a.precio AS prendaPrecio, 
+            a.disponible AS prendaDisponible, 
+            b.nombre AS categoriaNombre
+        FROM prenda a
+        INNER JOIN categoria b
+            ON a.id_categoria = b.id
+        ');
+    
         $query->execute();
-        
         $items = $query->fetchAll(PDO::FETCH_OBJ);
         return $items;
+
     }
 
     public function getCategoryItems($categoryId){
@@ -25,20 +34,26 @@ class ItemModel extends Model{
 
     
     public function getItem($id) {
-        $query = $this->db->prepare('SELECT * FROM prenda WHERE id=?');
-        $query->execute([$id]);
+    $query = $this->db->prepare('
+        SELECT
         
-        $item = $query->fetch(PDO::FETCH_OBJ);
+            a.nombre AS prendaNombre,
+            a.material AS prendaMaterial,
+            a.precio AS prendaPrecio,
+            a.disponible AS prendaDisponible,
+            b.nombre AS categoriaNombre
+        FROM prenda a
+        INNER JOIN categoria b
+            ON a.id_categoria = b.id
+        WHERE a.id = ?
+    ');
+    
+    $query->execute([$id]);
+    $item = $query->fetch(PDO::FETCH_OBJ);
 
-        if ($item) {
-            $categoryQuery = $this->db->prepare("SELECT * FROM categoria WHERE id = ?");
-            $categoryQuery->execute([$item->id]);
-            $category  = $categoryQuery->fetch(PDO::FETCH_OBJ);
-            $item->nombre = $category ? $category->nombre : null;
-        }
+    return $item;
+}
 
-        return $item;
-    }
 
     public function addItem($id_category, $nombre, $material, $precio, $disponible){
         $query = $this->db->prepare('INSERT INTO prenda (id_categoria, nombre, material, precio, disponible) VALUES (?,?,?,?,?)');

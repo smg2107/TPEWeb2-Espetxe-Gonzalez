@@ -30,6 +30,7 @@
 			$controller = new ItemController();
 			$controller->editItemForm($params[1]);
 			break;
+		
 		case 'editItem':
 			$controller = new ItemController();
 			$controller->editItem($params[1]);

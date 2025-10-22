@@ -63,6 +63,7 @@ class ItemController
         $this->itemView->editItemForm($item, $items, $categories);
     }
 
+
     public function editItem($id)
     {
         AuthHelper::verify();
