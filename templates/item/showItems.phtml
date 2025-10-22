@@ -9,7 +9,6 @@
         <tr>
             <th>Prenda</th>
             <th>Categoria</th>
-            <th>Nombre</th>
             <th>Material</th>
             <th>Precio</th>
             <th>Disponible</th>
@@ -22,12 +21,11 @@
     <tbody>
         <?php foreach ($items as $item) : ?>
             <tr>
-                <td><a href="items/<?= $item->id ?>"><?= htmlspecialchars($item->id) ?></a></td>
-                <td><a href="categories/<?= $item->id ?>"><?= htmlspecialchars($item->id) ?></a></td>
-                <td><?= $item->nombre ?></td>
-                <td><?= $item->material?></td>
-                <td><?= $item->precio?></td>
-                <td><?= $item->disponible?></td>
+                <td><a href="items/<?= $item->id ?>"><?= htmlspecialchars($item->prendaNombre) ?></a></td>
+                <td><a href="categories/<?=$item->id_categoria ?>"><?= htmlspecialchars($item->categoriaNombre) ?></a></td>
+                <td><?= $item->prendaMaterial?></td>
+                <td><?= $item->prendaPrecio?></td>
+                <td><?= $item->prendaDisponible?></td>
 
                 <?php if ($this->session) : ?>
                     <td>
